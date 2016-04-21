@@ -29,15 +29,25 @@ router.get('/allvideo',function(req,res,next){
   })
 })
 
-function fileList(dir) {
-  return fs.readdir(dir, function(err,items){
-    console.log(items)
-    return items
-  })
+function getFiles (dir, files_){
+    files_ = files_ || [];
+    var files = fs.readdirSync(dir);
+    for (var i in files){
+      var filename = files[i]
+        var name = dir + '/' + files[i];
+        if (fs.statSync(name).isDirectory()){
+            getFiles(name, files_);
+        } else {
+            name = "/videos/" + filename;
+            files_.push(name);
+        }
+    }
+    return files_;
 }
 
 router.get('/vidsfromfolder', function(req,res,next){
-  res.send(fileList('./public/videos'))
+  files = getFiles('./public/videos')
+  res.send(JSON.stringify(files))
 })
 
 router.post('/nextvideo',function(req,res, next){

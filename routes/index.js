@@ -7,7 +7,7 @@ function get_allvideos(req, callback) {
         uri : "http://" + req.get('host') + '/api/vidsfromfolder',
         method : 'GET'
     };
-    var res = '';
+    var res = [];
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res = body;
@@ -21,10 +21,13 @@ function get_allvideos(req, callback) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  get_allvideos(req,function(resp){
-    console.log(resp)
-    res.render('index',{videos: resp})
-  })
+    get_allvideos(req,function(resp){
+        console.log(resp)
+        res.render('index',{ videos: JSON.parse(resp) })
+    })
 });
 
+router.get('/display', function(req, res, next) {
+    res.render('display')
+})
 module.exports = router;

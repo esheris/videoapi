@@ -3,13 +3,15 @@
   <head>
     <title>videos</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="./javascripts/videoapi.js"></script>
+    
   </head>
   <body>
-    <h1>videos</h1>
-
-    <% for(var i=0;i<videos.length;i++){ %>
-      <button type="button"><%= videos.substring(videos.lastIndexOf('/')+1); %></button>
+    <% for(var i in videos) { %>
+    <% var shortname = videos[i].substring(videos[i].lastIndexOf('/')+1,videos[i].lastIndexOf('.')) %>
+      <button type="button" id="<%= shortname %>" value="<%= shortname %>" name="<%= shortname %>" onclick="postvideo('<%= videos[i] %>')"/><%= shortname %></button>
     <% } %>
+    <div id="message"></div>
   </body>
 </html>
