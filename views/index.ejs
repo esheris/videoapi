@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>videos</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>videos</h1>
+
+    <% for(var i=0;i<videos.length;i++){ %>
+      <button type="button"><%= videos.substring(videos.lastIndexOf('/')+1); %></button>
+    <% } %>
   </body>
 </html>
