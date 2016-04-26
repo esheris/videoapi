@@ -4,18 +4,12 @@
     <title>display</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="./javascripts/videoapi.js"></script>
     <script type="javascript">
-        (function poll() {
-            setTimeout(function() {
-                $.ajax({ url: "/api/nextvideo", success: function(data) {
-                    if (data){
-                        $('#display').innerhtml = "<video><source src=" + data.video_name +</video>
-                    }
-                }, dataType: "json", complete: poll });
-            }, 1000);
+            setTimeout(function() { poll(), 10000});
         })();
     </script>
-    
+
   </head>
   <body>
   <div id='display'></div>
