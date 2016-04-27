@@ -1,3 +1,4 @@
+var pollid;
 function postvideo(url){
   $.ajax({
     type: "POST",
@@ -10,11 +11,33 @@ function postvideo(url){
 }
 
 function poll(){
-  $.ajax({ url: "/api/nextvideo", success: function(data) {
+  $.ajax({
+    url: "/api/nextvideo",
+    success: function(data) {
       if (data){
-          $('#display').html = "<video><source src=" + data.video_name +</video>
-      } else {
-        $('#display').html = ""
+        clearInterval(pollid);
+        handleData(data);
       }
-  } });
+    }
+});
+}
+
+function handleData(data){
+  console.log("handle data")
+  if (data.video_name.endsWith(".mp3")){
+    $("#audio > source").attr("src",data.video_name)
+    $("#audio").load()
+  }
+  if (data.video_name.endsWith(".mp4")){
+    console.log("video")
+    $("#video > source").attr("src",data.video_name)
+    $("#video")[0].load()
+    $("#video")[0].play()
+  }
+}
+
+function media_ended(){
+  $("#video > source").attr("src","")
+  $("#video")[0].load()
+  pollid = setInterval(function(){ poll(); }, 1000);
 }

@@ -19,7 +19,7 @@ router.get('/nextvideo', function(req, res, next) {
   });
 });
 
-router.get('/allvideo',function(req,res,next){
+router.get('/allvideos',function(req,res,next){
   db.all("Select rowid as id, * from video_queue",function(err,row){
     if (row){
       res.send(row);
@@ -67,6 +67,15 @@ router.param('rowid',function(req,res,next,rowid){
 router.delete('/nextvideo/:rowid', function(req,res, next){
   console.log("delete " + req.params.rowid);
   db.run("DELETE from video_queue where rowid = $rowid",{
+    $rowid: req.params.rowid
+  },function(dbres){
+    res.send(dbres);
+  });
+});
+
+router.delete('/allvideos', function(req,res, next){
+  console.log("delete all");
+  db.run("DELETE from video_queue",{
     $rowid: req.params.rowid
   },function(dbres){
     res.send(dbres);
