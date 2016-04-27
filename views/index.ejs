@@ -10,7 +10,7 @@
   <body>
     <% for(var i in videos) { %>
     <% var shortname = videos[i].substring(videos[i].lastIndexOf('/')+1,videos[i].lastIndexOf('.')) %>
-      <button type="button" id="<%= shortname %>" value="<%= shortname %>" name="<%= shortname %>" onclick="postvideo('<%= videos[i] %>')"/><%= shortname %></button>
+      <button style="width:100px; height:100px;" type="button" id="<%= shortname %>" value="<%= shortname %>" name="<%= shortname %>" onclick="postvideo('<%= videos[i] %>')"/><%= shortname %></button>
     <% } %>
     <div id="message"></div>
   </body>

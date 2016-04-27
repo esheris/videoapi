@@ -5,7 +5,10 @@ function postvideo(url){
     url: "/api/nextvideo",
     data: {video_name: url},
     success: function(){
-      $('#message').html("Success")
+      $('#message').html("Success").css('background','#00ff00')
+      setTimeout(function(){
+        $('#message').html("")
+      },1000)
     },
   })
 }
@@ -26,7 +29,8 @@ function handleData(data){
   console.log("handle data")
   if (data.video_name.endsWith(".mp3")){
     $("#audio > source").attr("src",data.video_name)
-    $("#audio").load()
+    $("#audio")[0].load()
+    $("#audio")[0].play()
   }
   if (data.video_name.endsWith(".mp4")){
     console.log("video")
@@ -38,6 +42,8 @@ function handleData(data){
 
 function media_ended(){
   $("#video > source").attr("src","")
+  $("#audio > source").attr("src","")
   $("#video")[0].load()
+  $("#audio")[0].load()
   pollid = setInterval(function(){ poll(); }, 1000);
 }
