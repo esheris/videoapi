@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>videos</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="/javascripts/videoapi.js"></script>
+
+  </head>
+  <body>
+    <ul>
+    <% for(var i in videos) { %>
+    <% var shortname = videos[i].substring(videos[i].lastIndexOf('/')+1,videos[i].lastIndexOf('.')) %>
+      <li><label><%= shortname %></label><button type="button" id="<%= shortname %>" value="<%= shortname %>" name="<%= shortname %>" onclick="postvideo('<%= videos[i] %>')"/>Delete</button></li>
+    <% } %>
+  </ul>
+  </body>

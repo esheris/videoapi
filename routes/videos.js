@@ -38,7 +38,7 @@ function getFiles (dir, files_){
         if (fs.statSync(name).isDirectory()){
             getFiles(name, files_);
         } else {
-            name = "/videos/" + filename;
+            name = "/media/" + filename;
             files_.push(name);
         }
     }
@@ -46,7 +46,7 @@ function getFiles (dir, files_){
 }
 
 router.get('/vidsfromfolder', function(req,res,next){
-  files = getFiles('./public/videos')
+  files = getFiles('./public/media')
   res.send(JSON.stringify(files))
 })
 
