@@ -34,6 +34,7 @@ function getFiles (dir, files_){
     var files = fs.readdirSync(dir);
     for (var i in files){
       var filename = files[i]
+      if (filename.includes("-bot")){continue}
         var name = dir + '/' + files[i];
         if (fs.statSync(name).isDirectory()){
             getFiles(name, files_);

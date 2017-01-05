@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "start node ./bin/www && start node ./bot/irc.js"
+    "start": "start /b node ./bin/www && start /b node ./bot/irc.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
