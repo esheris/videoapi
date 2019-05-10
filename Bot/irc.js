@@ -16,7 +16,7 @@ var options = {
   },
   identity: {
     username: "mystbot",
-    password: "oauth:wqtu7y0gp5di1t0982gng3ysniafnc"
+    password: ""
   },
   channels: [mychannel]
 };
